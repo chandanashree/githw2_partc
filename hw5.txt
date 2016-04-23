@@ -1,0 +1,80 @@
+chandanashree 86765
+
+Part C:
+
+1. Create a new git repository somewhere in your filesystem, and configure a remote 
+(called whatever you want,What command did you use to configure the remote?
+
+- $ git init
+	Initialized empty Git repository in C:/Users/vputtaiah/Desktop/Chandana/SixthSem
+	ester/practice/repos/githw2_partc/.git/
+
+- $ git remote add origin https://github.com/chandanashree/githw2_partc.git
+
+- $ git remote -v
+	origin  https://github.com/chandanashree/githw2_partc.git (fetch)
+	origin  https://github.com/chandanashree/githw2_partc.git (push)
+
+2. Instead of creating a new git repository and configuring it with this remote, 
+I could have asked you to git clone the repo from afs. If you had done so, 
+what would the output of git remote -v be?
+
+ - $ git clone https://github.com/afs/jena.git
+	Cloning into 'jena'...
+	remote: Counting objects: 307380, done.
+	remote: Compressing objects: 100% (151/151), done.
+	Rremote: Total 307380 (delta 54), reused 0 (delta 0), pack-reused 307184
+	Receiving objects: 100% (307380/307380), 391.73 MiB | 1.63 MiB/s, done.
+	Resolving deltas: 100% (195330/195330), done.
+	Checking connectivity... done.
+	Checking out files: 100% (12366/12366), done.
+
+- $ git remote -v
+	origin  https://github.com/afs/jena.git (fetch)
+	origin  https://github.com/afs/jena.git (push)
+
+3. Run git fetch remotename (substituting your remote name for remotename).
+Did anything appear in your working directory? Why?
+
+- $ git fetch jena
+	fatal: 'jena' does not appear to be a git repository
+	fatal: Could not read from remote repository.
+
+	Please make sure you have the correct access rights
+	and the repository exists.
+
+
+4. Update your local master branch with the remote one, and give the command you used to do so.
+
+- $ git pull origin master
+	From https://github.com/afs/jena
+	 * branch            master     -> FETCH_HEAD
+	Already up-to-date.
+
+5. Your working directory should have been updated. You should check that. 
+That means the master branch was updated on the remote. 
+But it's possible that when we ran git fetch, we fetched other branches as well! 
+How could we (i.e. what command could we use) find all the branches we may have gotten from the remote?
+
+- $ git branch -a
+	* master
+	  remotes/origin/HEAD -> origin/master
+	  remotes/origin/JENA-380
+	  remotes/origin/JENA-507
+	  remotes/origin/add-contract-tests
+	  remotes/origin/fuseki-cache
+	  remotes/origin/jena-owl2
+	  remotes/origin/jena-text-cache
+	  remotes/origin/jena2
+	  remotes/origin/master
+	  remotes/origin/streaming-update
+  
+6. Spoiler: there's another branch. Check it out, find the file on that branch, and give the first five letters of that file as well as the command you used to checkout the branch. 
+NOTE: It's very bad practice to directly git checkout the remote-tracking branch. 
+Instead, try to checkout the branch so that it creates a local branch based on the remote-tracking branch. If you're not sure how (it's pretty easy to guess, though), you can look it up.
+
+- $ git checkout JENA-507
+	Branch JENA-507 set up to track remote branch JENA-507 from origin.
+	Switched to a new branch 'JENA-507'
+- $ git ls-files pom.xml
+	pom.xml
